@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "cbc4fdf00eb12e5c",
+            "id": "613bd17d14749f74",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -38,11 +38,11 @@
         ]
       },
       {
-        "id": "2bd04e5faef36533",
+        "id": "068e81096dd87ae1",
         "type": "tabs",
         "children": [
           {
-            "id": "0bc3586eeac9bfd3",
+            "id": "fbacca602fcfb517",
             "type": "leaf",
             "state": {
               "type": "reveal-preview-view",
@@ -201,19 +201,20 @@
   },
   "active": "c3b59aad1b59df52",
   "lastOpenFiles": [
-    "tpl-default.md",
+    "repo-qr.png",
     "otel.md",
+    "i-m-tired-boss.png",
+    "otel-collector-flow-qr.png",
+    "otel-http-metrics-qr.png",
+    "tpl-default.md",
+    "watson.ch.png",
+    "tracking_service_waterfall.png",
+    "smallinvoice.png",
     "python-flask-logo.png",
-    "otel-collector-flow.png",
-    "otel-http-metrics.png",
-    "otel_state_of_sdk.png",
-    "screenshot-2025-03-24-23-10-29.png",
-    "grafana-lgtm-qr.png",
-    "grafana-lgtm.webp",
-    "Grafana is the goat... Let's deploy the LGTM stack [1X3dV3D5EJg].webp",
-    "otel_flow.png",
-    "grafana-loki.png",
+    "prometheus.png",
+    "pingen.ch.png",
     "microservices.mp4",
+    "README.md",
     "Microservices [y8OnoxKotPQ].mp4",
     "Microservices [y8OnoxKotPQ].temp.mp4",
     "Microservices [y8OnoxKotPQ].f233.mp4",

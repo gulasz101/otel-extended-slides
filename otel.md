@@ -17,16 +17,20 @@ From Chaos to Clarity: How OpenTelemetry Makes Microservice Monitoring Effortles
 Agenda:
 - introduction
 - high level otel overview
-- overview of main components:
-	- traces
-	- metrics
-	- logs
+- overview of main components
 - tooling
-- state of instrumentation for:
-	- php
-	- go
-	- python
+- state of instrumentation libs
 
+---
+
+No demo 🙃
+
+![[i-m-tired-boss.png|600]]
+
+notes:
+sadly my laptop does not have greatest time running demo project
+
+https://opentelemetry.io/docs/demo/docker-deployment/
 ---
 
 <grid drag="90 20" drop="5 5">
@@ -61,18 +65,21 @@ notes:
 - currently working as Warehouse Management System team lead
 - Was working as a member of software operations, where was early adopting opentelemetry for php apps, when it was still a beta
 - otel for PHP became stable only few days after I left for new role
+
+https://metro-markets.de/careers/
+
 ---
 
-<grid drag="90 20" drop="5 5">
+<grid drag="90 20" drop="5 0">
 Why we are here?
 </grid>
 
 <grid drag="60 55" drop="10 20">
-<video controls><source src="microservices.mp4"></video>
+<video type="video/mp4" controls><source src="microservices.mp4"></video>
 </grid>
 
 
-<grid drag="40 45" drop="-5 -10">
+<grid drag="40 45" drop="-5 -15">
 ![[microservicesqr.png]]
 </grid>
 
@@ -89,6 +96,8 @@ We almost never joke from this topic, because debugging distributed services is 
 
 Or is it?
 
+https://www.youtube.com/watch?v=y8OnoxKotPQ
+
 ---
 
 ![[opentelemetry-horizontal-color.png]]
@@ -104,7 +113,9 @@ So here to solve (or at least aim to help us solving those problems) comes opent
 
 
 ---
- ### Traces and distributed traces
+ <grid drag="70 20" drop="20 -97">
+Traces and distributed traces
+</grid>
 
 ![[distributed_traces_waterfall.png]]
 
@@ -116,10 +127,12 @@ A distributed trace, more commonly known as a trace, records the paths taken by 
 
 Many Observability backends visualize traces as waterfall diagrams .
 
+
+
 ---
 
 <grid drag="90 20" drop="5 5">
-Tooling
+Obeservability backends
 </grid>
 
 <grid drag="40 50" drop="5 10">
@@ -130,7 +143,9 @@ Tooling
 ![[grafana-tempo.png]]
 </grid>
 
-
+notes:
+- https://www.jaegertracing.io/
+- https://grafana.com/oss/tempo/
 
 ---
 
@@ -146,6 +161,13 @@ Tooling
 notes:
 
 A **metric** is a **measurement** of a service captured at runtime. The moment of capturing a measurements is known as a **metric event**, which consists not only of the measurement itself, but also the time at which it was captured and associated metadata.
+
+for example:
+- amount of active users:
+- amount of waiting invoices to process;
+- count of failed requests;
+
+https://prometheus.io/
 
 ---
 ## Logs
@@ -164,24 +186,28 @@ A log is a timestamped text record, either structured (recommended) or unstructu
 
 Let's just traceparent log entry.
 
+https://grafana.com/oss/loki/
+
 ---
 
-![[php_logs.png]]
+![[php_logs.png|700]]
 
 notes:
 
 just make use of your cloud provider and simply decorate logs with your traceid :)
 
 ---
-
+<grid drag="70 20" drop="top">
 How all of that works together?
+</grid>
 
-![[otel_flow.png]]
+![[otel_flow.png|700]]
 
 ---
-<grid drag="90 20" drop="5 5">
-Funniest way to play with all of that on your machine!
+<grid drag="70 20" drop="20 -97">
+Funniest way to play with it!
 </grid>
+
 <grid drag="60 55" drop="10 20">
 ![[grafana-lgtm.webp]]
 </grid>
@@ -191,16 +217,25 @@ Funniest way to play with all of that on your machine!
 ![[grafana-lgtm-qr.png]]
 </grid>
 
+notes:
+https://www.youtube.com/watch?v=1X3dV3D5EJg
+
+LGTM Logs Grafana Traces Metrics
+
 ---
 
 ![[otel_state_of_sdk.png]]
+notes:
+
+as we can see since 2021 (when spec got stable) otel matured a lot, so for those technologies on which internet is built we have pretty stable toolset.
+
+https://opentelemetry.io/docs/languages/#status-and-releases
 
 ---
 
 Auto-instrumentation
 
-
-<grid drag="20 10" drop="-1 -115">
+<grid drag="20 10" drop="-1 -105">
 ![[python-flask-logo.png]]
 </grid>
 
@@ -217,10 +252,15 @@ opentelemetry-instrument \
     flask run -p 8080
 ```
 
+
+notes:
+
+https://opentelemetry.io/docs/languages/python/
+
 ---
 
 Example Output
-<grid drag="20 10" drop="-1 -115">
+<grid drag="20 10" drop="-1 -105">
 ![[python-flask-logo.png]]
 </grid>
 
@@ -315,6 +355,11 @@ trace.set_tracer_provider(provider)
 tracer = trace.get_tracer("my.tracer.name")
 ```
 
+notes:
+this ofc requires slightly more effort.
+So basically you need to get the tracer instance while you are bootstrapping your application.
+
+for instance to handle all the controller routes
 
 ---
 Creating spans
@@ -328,6 +373,8 @@ def do_work():
 ```
 
 notes:
+
+and start feeding your traces with spans.
 
 this is just for reference, instrumenting application could take us infinite amount of time
 
@@ -369,22 +416,44 @@ notes:
 
 ---
 
-https://grafana.com/grafana/dashboards/18860-http-metrics-opentelemetry/
-
+<grid drag="60 55" drop="10 20">
 ![[otel-http-metrics.png]]
+</grid>
+
+
+<grid drag="40 45" drop="-5 -10">
+![[otel-http-metrics-qr.png]]
+</grid>
 
 notes:
+ok, and now what we have to do? we just need to NOT REINVENT THIS WHEEL
+
 actually here we can go to grafana labs and just download json
 
+https://grafana.com/grafana/dashboards/18860-http-metrics-opentelemetry/
+
 ---
-
-https://grafana.com/grafana/dashboards/18309-opentelemetry-collector-data-flow/
-
+<grid drag="90 90" drop="0 10">
 ![[otel-collector-flow.png]]
+</grid>
 
+
+<grid drag="40 45" drop="-5 -10">
+![[otel-collector-flow-qr.png]]
+</grid>
+
+
+notes:
+https://grafana.com/grafana/dashboards/18309-opentelemetry-collector-data-flow/
 
 
 ---
 Thank you!
 
+![[repo-qr.png|200]]
 
+notes:
+
+here is a link to all the resources I was referring to today
+
+https://github.com/gulasz101/otel-extended-slides/blob/main/otel.md
